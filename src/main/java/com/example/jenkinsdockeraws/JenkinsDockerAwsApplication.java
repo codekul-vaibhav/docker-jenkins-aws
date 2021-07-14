@@ -9,5 +9,4 @@ public class JenkinsDockerAwsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JenkinsDockerAwsApplication.class, args);
 	}
-
 }
