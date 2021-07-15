@@ -1,4 +1,8 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/jenkins-docker-aws-0.0.1-SNAPSHOT.jar.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8
+
+ADD target/jenkins-docker-aws-0.0.1-SNAPSHOT.jar jenkins-docker-aws.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","jenkins-docker-aws.jar"]
+
