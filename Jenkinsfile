@@ -1,18 +1,29 @@
-import hudson.model.Result
-import jenkins.model.CauseOfInterruption
+@NonCPS
+def cancelPreviousBuilds() {
+    def jobName = env.JOB_NAME
+    def buildNumber = env.BUILD_NUMBER.toInteger()
+    /* Get job name */
+    def currentJob = Jenkins.instance.getItemByFullName(jobName)
 
-build.getProject()._getRuns().iterator().each{ run ->
-  def exec = run.getExecutor()
-  //if the run is not a current build and it has executor (running) then stop it
-  if( run!=build && exec!=null ){
-    //prepare the cause of interruption
-    def cause = { "interrupted by build #${build.getId()}" as String } as CauseOfInterruption
-    exec.interrupt(Result.ABORTED, cause)
-  }
+    /* Iterating over the builds for specific job */
+    for (def build : currentJob.builds) {
+        def exec = build.getExecutor()
+        /* If there is a build that is currently running and it's not current build */
+        if (build.isBuilding() && build.number.toInteger() != buildNumber && exec != null) {
+            /* Then stop it */
+            exec.interrupt(
+                    Result.ABORTED,
+                    new CauseOfInterruption.UserInterruption("Aborted by #${currentBuild.number}")
+                )
+            println("Aborted previously running build #${build.number}")
+        }
+    }
 }
-
 pipeline {
     agent any
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+      }
     stages {
 
         stage('deploy') {
