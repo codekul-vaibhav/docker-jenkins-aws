@@ -21,11 +21,16 @@ def cancelPreviousBuilds() {
 }
 pipeline {
     agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-      }
-    stages {
 
+    stages {
+        stage('Init') {
+            agent { label 'master' }
+            steps {
+                script {
+                    cancelPreviousBuilds()
+                }
+            }
+        }
         stage('deploy') {
             steps {
                 sh "mvn package"
