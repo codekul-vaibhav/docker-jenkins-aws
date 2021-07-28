@@ -12,3 +12,5 @@ public class TestController {
 
     }
 }
+
+//http://ec2-54-180-211-180.ap-northeast-2.compute.amazonaws.com:8081/helloAws
