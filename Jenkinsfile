@@ -23,14 +23,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Init') {
-            agent { label 'master' }
-            steps {
-                script {
-                    cancelPreviousBuilds()
-                }
-            }
-        }
+//         stage('Init') {
+//             agent { label 'master' }
+//             steps {
+//                 script {
+//                     cancelPreviousBuilds()
+//                 }
+//             }
+//         }
         stage('deploy') {
             steps {
                 sh "mvn package"
