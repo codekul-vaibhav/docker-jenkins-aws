@@ -62,7 +62,7 @@ pipeline {
         stage('Docker deploy'){
             steps {
 //                 sh 'docker stop $(docker ps -a -q --filter ancestor=vaibhavnerle/docker-jenkins-aws:34 --format="{{.ID}}")'
-                sh 'docker run -itd -p  8081:8080 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
+                sh 'docker run -itd -p  8081:8081 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
             }
         }
 
