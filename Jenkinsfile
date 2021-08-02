@@ -86,9 +86,9 @@ pipeline {
 //         }
 
         stage('deploy on master'){
-//          when{
-//                 expression{ choice =='master'}
-//               }
+         when{
+                expression{ env.env.GIT_BRANCH =='origin/master'}
+              }
                     steps {
                             echo 'pulling ..'+ env.GIT_BRANCH
                             sh 'docker stop $(docker ps --filter expose=8081-8081/tcp -q)'
