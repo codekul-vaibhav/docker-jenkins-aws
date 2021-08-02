@@ -71,10 +71,6 @@ pipeline {
             }
         }
 
-
-
-        stage('deploy on production'){
-
         stage('deploy on master'){
 
          when{
