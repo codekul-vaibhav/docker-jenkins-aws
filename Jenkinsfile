@@ -87,7 +87,7 @@ pipeline {
 
         stage('deploy on master'){
          when{
-                expression{ env.env.GIT_BRANCH =='origin/master'}
+                expression{ env.GIT_BRANCH =='origin/master'}
               }
                     steps {
                             echo 'pulling ..'+ env.GIT_BRANCH
