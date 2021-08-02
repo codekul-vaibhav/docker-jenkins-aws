@@ -63,7 +63,7 @@ pipeline {
 
           when{
                expression{
-                           ${env.BRANCH_NAME =='production'}
+                           env.BRANCH_NAME =='production'
                          }
             }
             steps {
@@ -88,7 +88,7 @@ pipeline {
         stage('deploy on master'){
          when{
                 expression{
-                        ${env.BRANCH_NAME =='master'}
+                        env.BRANCH_NAME =='master'
                 }
               }
                     steps {
