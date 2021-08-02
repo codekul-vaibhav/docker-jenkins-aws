@@ -62,9 +62,9 @@ pipeline {
         stage('deploy on production'){
 
           when{
-                expression{
-                            BRANCH_NAME =="production"
-                          }
+               expression{
+                           ${env.BRANCH_NAME =='production'}
+                         }
             }
             steps {
                      sh 'docker stop $(docker ps --filter expose=8082-8082/tcp -q)'
@@ -88,7 +88,7 @@ pipeline {
         stage('deploy on master'){
          when{
                 expression{
-                        BRANCH_NAME =="*/master"
+                        ${env.BRANCH_NAME =='master'}
                 }
               }
                     steps {
