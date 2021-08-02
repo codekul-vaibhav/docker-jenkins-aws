@@ -90,7 +90,7 @@ pipeline {
 //                 expression{ choice =='master'}
 //               }
                     steps {
-                            echo 'pulling ..'+ env.BRANCH_NAME
+                            echo 'pulling ..'+ env.GIT_BRANCH
                             sh 'docker stop $(docker ps --filter expose=8081-8081/tcp -q)'
                             sh 'docker run -itd -p  8081:8081 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
                           }
