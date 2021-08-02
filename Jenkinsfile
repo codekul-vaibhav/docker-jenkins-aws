@@ -83,7 +83,7 @@ pipeline {
 //                         }
 //             }
 
-        }
+//         }
 
         stage('deploy on master'){
 //          when{
