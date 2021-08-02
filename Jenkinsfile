@@ -59,10 +59,12 @@ pipeline {
             }
         }
 
-        stage('deploy on master'){
+        stage('deploy on production'){
 
           when{
-                branch "production"
+                expression{
+                            BRANCH_NAME =="production"
+                          }
             }
             steps {
                      sh 'docker stop $(docker ps --filter expose=8082-8082/tcp -q)'
@@ -83,9 +85,11 @@ pipeline {
 
         }
 
-        stage('deploy on production'){
+        stage('deploy on master'){
          when{
-              branch "master"
+                expression{
+                        BRANCH_NAME =="*/master"
+                }
               }
                     steps {
                             sh 'docker stop $(docker ps --filter expose=8081-8081/tcp -q)'
