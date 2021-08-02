@@ -59,31 +59,16 @@ pipeline {
             }
         }
 
-//         stage('deploy on production'){
+        stage('deploy on production'){
+              when{
+                    expression{ env.GIT_BRANCH =='origin/production'}
+                  }
 
-//           when{
-//                expression{
-//                            choice =='production'
-//                          }
-//             }
-//             steps {
-//                      sh 'docker stop $(docker ps --filter expose=8082-8082/tcp -q)'
-//                      sh 'docker run -itd -p  8082:8082 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
-//             }
-
-//             if(env.branch == "production"){
-//                 steps {
-//                                     sh 'docker stop $(docker ps --filter expose=8082-8082/tcp -q)'
-//                                     sh 'docker run -itd -p  8082:8082 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
-//                            }
-//             }else{
-//                   steps {
-//                                      sh 'docker stop $(docker ps --filter expose=8081-8081/tcp -q)'
-//                                      sh 'docker run -itd -p  8081:8081 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
-//                         }
-//             }
-
-//         }
+            steps {
+                     sh 'docker stop $(docker ps --filter expose=8082-8082/tcp -q)'
+                     sh 'docker run -itd -p  8082:8082 vaibhavnerle/docker-jenkins-aws:${BUILD_NUMBER}'
+            }
+        }
 
         stage('deploy on master'){
          when{
