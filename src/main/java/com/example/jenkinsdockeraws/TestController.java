@@ -9,11 +9,11 @@ public class TestController {
     @GetMapping(value = "helloAws")
     public String test(){
 
-        return "Hello team dev";
+        return "Hello team prod";
     }
     @GetMapping(value = "hii")
     public String hii(){
-        return "Hii Team dev";
+        return "Hii Team prod";
 
     }
 
