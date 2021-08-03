@@ -9,7 +9,7 @@ public class TestController {
     @GetMapping(value = "helloAws")
     public String test(){
 
-        return "Hello Aws jenkins";
+        return "Hello team ";
     }
     @GetMapping(value = "hii")
     public String hii(){
