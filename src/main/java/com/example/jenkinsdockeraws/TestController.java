@@ -9,14 +9,9 @@ public class TestController {
     @GetMapping(value = "helloAws")
     public String test(){
 
-        return "Hello team prod";
-    }
-    @GetMapping(value = "hii")
-    public String hii(){
-        return "Hii Team prod";
+        return "Hello,Welcome to UAT environment";
 
     }
-
 
 }
 
